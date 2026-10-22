@@ -5,16 +5,13 @@
 <div class="login-wrapper py-5" style="min-height: calc(100vh - 160px);">
     <div class="login-card mx-auto" style="max-width: 440px;">
 
-        <div class="login-logo text-center mb-3">
-            <i class="bi bi-box-seam-fill fs-1 text-primary"></i>
-        </div>
 
         <div class="text-center mb-4">
             <h4 class="fw-bold mb-1" style="color: #2d3748;">Welcome Back</h4>
             <p class="text-muted" style="font-size: .88rem;">Select your user account to access the system</p>
         </div>
 
-        <form id="form-login">
+        <form id="form-login" action="{{ route('login.post') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="select-user_name" class="form-label fw-semibold">Account / Role</label>
@@ -61,7 +58,7 @@
 @push('scripts')
 <script>
     window.routes = {
-        loginProcess: "{{ route('api.login') }}"
+        loginProcess: "{{ Route::has('api.login') ? route('api.login') : url('/api/login') }}"
     };
 </script>
 <script src="{{ asset('js/modules/auth.js') }}"></script>

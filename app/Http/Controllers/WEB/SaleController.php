@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sale;
+use App\Models\Sales;
+use App\Models\SalesDetails;
+use App\Models\Users;
+use Carbon\Carbon;
 
 class SaleController extends Controller
 {
@@ -22,7 +25,7 @@ class SaleController extends Controller
 
     public function edit(int $id)
     {
-        $sale = Sale::find($id);
+        $sale = Sales::find($id);
         if (!$sale) {
             return redirect()->route('sales.index');
         }
@@ -35,12 +38,14 @@ class SaleController extends Controller
 
     public function print(int $id)
     {
-        $sale = Sale::with('details')->find($id);
+        $sale = Sales::find($id);
         if (!$sale) {
             return redirect()->route('sales.index');
         }
 
-        $user = $sale->getUser();
+        $sale->created_at = Carbon::parse($sale->created_at);
+        $sale->details = SalesDetails::where('sales_id', $id)->get();
+        $user = Users::find($sale->user_id);
 
         return view('sales.print', [
             'sale' => $sale,

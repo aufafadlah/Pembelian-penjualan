@@ -100,10 +100,11 @@
 @push('scripts')
 <script>
     window.routes = {
-        purchaseData: "{{ route('api.purchases.data') }}",
+        purchaseData: "{{ Route::has('api.purchases.data') ? route('api.purchases.data') : (Route::has('datatable.purchases') ? route('datatable.purchases') : url('/api/purchases_datatables')) }}",
         purchaseBase: "{{ url('/api/purchases') }}",
         userRole: "{{ session('user_role') }}"
     };
 </script>
 <script src="{{ asset('js/modules/purchases.js') }}"></script>
+
 @endpush

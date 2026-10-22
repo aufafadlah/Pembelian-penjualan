@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
-use App\Models\Purchase;
+use App\Models\Purchases;
+use App\Models\PurchaseDetails;
+use App\Models\Users;
+use Carbon\Carbon;
 
 class PurchaseController extends Controller
 {
@@ -22,7 +25,7 @@ class PurchaseController extends Controller
 
     public function edit(int $id)
     {
-        $purchase = Purchase::find($id);
+        $purchase = Purchases::find($id);
         if (!$purchase) {
             return redirect()->route('purchases.index');
         }
@@ -35,12 +38,14 @@ class PurchaseController extends Controller
 
     public function print(int $id)
     {
-        $purchase = Purchase::with('details')->find($id);
+        $purchase = Purchases::find($id);
         if (!$purchase) {
             return redirect()->route('purchases.index');
         }
 
-        $user = $purchase->getUser();
+        $purchase->created_at = Carbon::parse($purchase->created_at);
+        $purchase->details = PurchaseDetails::where('purchase_id', $id)->get();
+        $user = Users::find($purchase->user_id);
 
         return view('purchase.print', [
             'purchase' => $purchase,

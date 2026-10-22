@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->integer('purchase_id')->nullable();
             $table->integer('inventory_id')->nullable();
             $table->integer('qty')->nullable();
-            $table->decimal('price', 15, 2)->nullable();
+            $table->decimal('price', 50, 2)->nullable();
             $table->timestamps();
         });
     }

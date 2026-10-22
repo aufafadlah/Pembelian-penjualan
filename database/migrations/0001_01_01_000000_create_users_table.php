@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('role')->nullable(); // SuperAdmin, Sales, Purchase, Manager
+            $table->string('role')->nullable();
             $table->timestamps();
         });
     }

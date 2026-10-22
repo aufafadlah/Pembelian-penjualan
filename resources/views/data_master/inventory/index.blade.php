@@ -76,9 +76,9 @@
 @push('scripts')
 <script>
     window.routes = {
-        inventoryData: "{{ route('api.inventories.data') }}",
+        inventoryData: "{{ Route::has('api.inventories.data') ? route('api.inventories.data') : (Route::has('datatable.inventories') ? route('datatable.inventories') : url('/api/inventories_datatables')) }}",
         inventoryBase: "{{ url('/api/inventories') }}",
-        inventoryStore: "{{ route('api.inventories.store') }}"
+        inventoryStore: "{{ Route::has('api.inventories.store') ? route('api.inventories.store') : (Route::has('post.inventories') ? route('post.inventories') : url('/api/inventories')) }}"
     };
 </script>
 <script src="{{ asset('js/modules/inventories.js') }}"></script>

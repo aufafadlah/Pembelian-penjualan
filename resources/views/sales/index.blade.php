@@ -100,7 +100,7 @@
 @push('scripts')
 <script>
     window.routes = {
-        salesData: "{{ route('api.sales.data') }}",
+        salesData: "{{ Route::has('api.sales.data') ? route('api.sales.data') : (Route::has('datatable.sales') ? route('datatable.sales') : url('/api/sales_datatables')) }}",
         salesBase: "{{ url('/api/sales') }}",
         userRole: "{{ session('user_role') }}"
     };

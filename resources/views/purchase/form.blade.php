@@ -108,8 +108,8 @@
 @push('scripts')
 <script>
     window.routes = {
-        inventoryItems: "{{ route('api.inventories.items') }}",
-        purchaseStore: "{{ route('api.purchases.store') }}",
+        inventoryItems: "{{ Route::has('api.inventories.items') ? route('api.inventories.items') : url('/api/inventories') }}",
+        purchaseStore: "{{ Route::has('api.purchases.store') ? route('api.purchases.store') : (Route::has('post.purchases') ? route('post.purchases') : url('/api/purchases')) }}",
         purchaseBase: "{{ url('/api/purchases') }}",
         purchaseIndex: "{{ route('purchases.index') }}"
     };

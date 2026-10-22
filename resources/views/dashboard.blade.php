@@ -4,7 +4,7 @@
 @section('content')
 <div class="page-header d-flex align-items-start justify-content-between flex-wrap gap-3 mb-4">
     <div>
-        <h4 class="fw-bold mb-1">Welcome, {{ session('user_name') }} 👋</h4>
+        <h4 class="fw-bold mb-1">Welcome, {{ session('user_name') }}</h4>
         <p class="text-muted mb-0">Overview of system transaction activities &mdash; <span class="badge bg-primary">{{ $role }}</span></p>
     </div>
     <div class="d-flex gap-2 flex-wrap">
@@ -43,7 +43,7 @@
         <div class="stat-card">
             <div class="stat-icon si-teal"><i class="bi bi-cart-check"></i></div>
             <div>
-                <div class="stat-label">{{ $role === 'Sales' ? 'My Sales' : 'Total Sales' }}</div>
+                <div class="stat-label">Total Sales</div>
                 <div class="stat-value">{{ number_format($total_sales_count) }}</div>
                 <div class="stat-sub">Rp {{ number_format($total_sales_amount, 0, ',', '.') }}</div>
             </div>
@@ -56,7 +56,7 @@
         <div class="stat-card">
             <div class="stat-icon si-green"><i class="bi bi-bag-check"></i></div>
             <div>
-                <div class="stat-label">{{ $role === 'Purchase' ? 'My Purchases' : 'Total Purchases' }}</div>
+                <div class="stat-label">Total Purchases</div>
                 <div class="stat-value">{{ number_format($total_purchases_count) }}</div>
                 <div class="stat-sub">Rp {{ number_format($total_purchases_amount, 0, ',', '.') }}</div>
             </div>

@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('code')->nullable();
             $table->string('name')->nullable();
-            $table->decimal('price', 15, 2)->nullable();
+            $table->decimal('price', 50, 2)->nullable();
             $table->integer('stock')->nullable()->default(0);
             $table->softDeletes();
             $table->timestamps();
