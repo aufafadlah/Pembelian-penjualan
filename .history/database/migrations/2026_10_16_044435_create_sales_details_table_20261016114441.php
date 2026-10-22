@@ -1,2 +1,0 @@
-<?php
-sales_details
